@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by swarnim_d on 28-11-2016.
  */
@@ -17,6 +21,13 @@ public class ItemDetailFragment extends Fragment {
 
     TextView tvLabel,tvDesc;
     ImageView imgLabel;
+    String bundleFlowerLabel;
+
+
+
+    public String[] flowerNameArray = {"Rose", "Jasmine", "Lilly", "Sunflower", "Aster", "Tulip", "Lotus", "Sakura"};
+    public String[] flowerDescArray = {"Rose is red", "Jasmine is white", "Lilly is yellow", "Sunflower is orange", "Aster is purple", "Tulips are pink", "Lotus is white", "Sakura is colourful"};
+    int[] flowerImageArray = {R.drawable.rose,R.drawable.jasmine,R.drawable.lilly,R.drawable.sunflower,R.drawable.aster,R.drawable.tulip,R.drawable.lotus,R.drawable.sakura};
 
 
     @Override
@@ -30,87 +41,31 @@ public class ItemDetailFragment extends Fragment {
         imgLabel = (ImageView) view.findViewById(R.id.Image_frag);
 
 
+        ArrayList<HashMap<String,FlowerModel>> arrayListDetailFrag = new ArrayList<>();
+        HashMap<String,FlowerModel> hmapDetailFrag =new HashMap<>();
+
+       for(int i=0;i<flowerNameArray.length;i++){
+
+           FlowerModel fmDetailFrag = new FlowerModel();
+           fmDetailFrag.setDescModel(flowerDescArray[i]);
+           fmDetailFrag.setImageModel(flowerImageArray[i]);
+           hmapDetailFrag.put(flowerNameArray[i],fmDetailFrag);
+       }
+
+        arrayListDetailFrag.add(hmapDetailFrag);
+
+
+
         Bundle bundle = getArguments();
         if (bundle != null) {
-
-            String incomingLabel = bundle.getString("flowername");
-            Toast.makeText(getContext(), " the flower is "+incomingLabel, Toast.LENGTH_LONG).show();
-
-            if(incomingLabel.equals("Rose")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.rose);
-            }
-            if(incomingLabel.equals("Jasmine")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.jasmine);
-            }
-            if(incomingLabel.equals("Lilly")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.lilly);
-            }
-            if(incomingLabel.equals("Sunflower")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.sunflower);
-            }
-            if(incomingLabel.equals("Aster")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.aster);
-            }
-            if(incomingLabel.equals("Tulip")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.tulip);
-            }
-            if(incomingLabel.equals("Lotus")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.lotus);
-            }
-            if(incomingLabel.equals("Sakura")) {
-                tvLabel.setText(incomingLabel);
-                tvDesc.setText("A rose is a woody perennial flowering plant of the genus Rosa, " +
-                        "in the family Rosaceae, or the flower it bears. " +
-                        "There are over a hundred species and thousands of cultivars. " +
-                        "They form a group of plants that can be erect shrubs, " +
-                        "climbing or trailing with stems that are often armed with sharp prickles.");
-                imgLabel.setImageResource(R.drawable.sakura);
-            }
+            bundleFlowerLabel = bundle.getString("flowername");
+            Toast.makeText(getContext(), " the flower is "+bundleFlowerLabel, Toast.LENGTH_LONG).show();
+            tvLabel.setText(bundleFlowerLabel);
         }
 
-
+        FlowerModel fm = hmapDetailFrag.get(bundleFlowerLabel);
+        tvDesc.setText(fm.descModel);
+        imgLabel.setImageResource(fm.imageModel);
 
         return view;
     }
