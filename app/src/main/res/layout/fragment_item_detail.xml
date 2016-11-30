@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:text="flowers are those flowers are that what flower are flowers are this flowers are those flowers are that what flower are flowers are this flowers are those flowers are that what flower are flowers are this"
             android:textSize="24sp"
-            android:singleLine="false">
+            >
 
         </TextView>
     </ScrollView>

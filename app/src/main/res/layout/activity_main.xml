@@ -4,7 +4,8 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.swarnim_d.flowerlist.MainActivity">
+    tools:context="com.example.swarnim_d.flowerlist.MainActivity"
+    android:layout_weight="100">
 
 
 </RelativeLayout>

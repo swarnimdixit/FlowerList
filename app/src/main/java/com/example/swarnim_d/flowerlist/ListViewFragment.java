@@ -1,6 +1,7 @@
 package com.example.swarnim_d.flowerlist;
 
 
+import android.content.res.Configuration;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,12 +36,7 @@ public class ListViewFragment extends Fragment {
         container.removeAllViews();
 
 
-//        for(int i =0;i<flowerArray.length;i++) {
-//            hmapFragment.put(flowerArray[i], DescriptionArry[i]);
-//        }
-//
-//        final FlowerModel flowerModel = new FlowerModel();
-//        flowerModel.setHmapNameDesc(hmapFragment);
+
 
 
 
@@ -55,7 +51,7 @@ public class ListViewFragment extends Fragment {
 
                 String itemAtPosition = (String) adapterView.getItemAtPosition(i);
 
-
+                ListViewFragment listViewFragment = new ListViewFragment();
                 ItemDetailFragment itemdetailFrag = new ItemDetailFragment();
                 android.support.v4.app.FragmentManager fm = getFragmentManager();
 
@@ -63,7 +59,16 @@ public class ListViewFragment extends Fragment {
                 bundle.putString("flowername", itemAtPosition);
                 itemdetailFrag.setArguments(bundle);
 
-                fm.beginTransaction().replace(R.id.activity_main, itemdetailFrag).addToBackStack(null).commit();
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                   fm.beginTransaction().replace(R.id.rightpane_landscape_listview,itemdetailFrag).commit();
+//                    fm.beginTransaction().replace(R.id.rightpane_activity_main,itemdetailFrag).commit();
+
+                }
+
+                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                    fm.beginTransaction().replace(R.id.activity_main, itemdetailFrag).addToBackStack(null).commit();
+                }
+
 
             }
         });

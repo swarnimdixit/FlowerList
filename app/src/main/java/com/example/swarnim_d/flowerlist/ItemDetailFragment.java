@@ -24,7 +24,6 @@ public class ItemDetailFragment extends Fragment {
     String bundleFlowerLabel;
 
 
-
     public String[] flowerNameArray = {"Rose", "Jasmine", "Lilly", "Sunflower", "Aster", "Tulip", "Lotus", "Sakura"};
     public String[] flowerDescArray = {"Rose is red", "Jasmine is white", "Lilly is yellow", "Sunflower is orange", "Aster is purple", "Tulips are pink", "Lotus is white", "Sakura is colourful"};
     int[] flowerImageArray = {R.drawable.rose,R.drawable.jasmine,R.drawable.lilly,R.drawable.sunflower,R.drawable.aster,R.drawable.tulip,R.drawable.lotus,R.drawable.sakura};
@@ -41,7 +40,7 @@ public class ItemDetailFragment extends Fragment {
         imgLabel = (ImageView) view.findViewById(R.id.Image_frag);
 
 
-        ArrayList<HashMap<String,FlowerModel>> arrayListDetailFrag = new ArrayList<>();
+     //   ArrayList<HashMap<String,FlowerModel>> arrayListDetailFrag = new ArrayList<>();
         HashMap<String,FlowerModel> hmapDetailFrag =new HashMap<>();
 
        for(int i=0;i<flowerNameArray.length;i++){
@@ -52,7 +51,7 @@ public class ItemDetailFragment extends Fragment {
            hmapDetailFrag.put(flowerNameArray[i],fmDetailFrag);
        }
 
-        arrayListDetailFrag.add(hmapDetailFrag);
+     //   arrayListDetailFrag.add(hmapDetailFrag);
 
 
 
